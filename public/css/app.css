@@ -1,0 +1,10 @@
+.canvas--A4 {
+    /* background-image: url("https://i.ibb.co/NN0sXW1/cover-letter-background-01.jpg"); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: 5px 5px 10px black;
+    height: 1123px;
+    width: 794px;
+    margin: auto;
+    padding: 50px;
+}

@@ -1,17 +1,17 @@
-<div>
-    <div class="row d-flex justify-content-between">
+<div class="canvas--A4" style="background-image:url('{{ asset('../images/letter_bg01.jpg') }}')">
+    <div class="d-flex justify-content-between mb-3">
         <p>LEMBERTON QUENTIN</p>
         <p>le {{letter.createdAt.date | date("d/m/Y")}}</p>
     </div>
+    <p class="mb-4 text-center">
+        Objet : Candidature pour le poste {{ (letter.jobDStatus == 0) ? 'de ' : 'd\'' }}{{letter.jobName}} au sein {{ (letter.companyDStatus == 0) ? 'de ' : 'd\'' }}{{letter.companyName}}     
+    </p>
     <p>
         {% if letter.hrGender == 0 %}Madame, Monsieur {% endif %}
         {% if letter.hrGender == 1 %}Monsieur {% endif %}
         {% if letter.hrGender == 2 %}Madame {% endif %}
 
         {% if letter.hrName != null %}{{letter.hrName}}{% endif %}
-    </p>
-    <p>
-        Objet : Candidature pour le poste {{ (letter.jobDStatus == 0) ? 'de ' : 'd\'' }}{{letter.jobName}} au sein {{ (letter.companyDStatus == 0) ? 'de ' : 'd\'' }}{{letter.companyName}}     
     </p>
     <p>
         Suite à ma reconversion professionnelle en tant que développeur web full stack, je suis actuellement en pleine recherche d’emploi. Le poste {{ (letter.jobDStatus == 0) ? 'de ' : 'd\'' }}{{letter.jobName}} m'intéresse grandement, c’est pourquoi je me permets de proposer ma candidature.
@@ -33,7 +33,7 @@
     <p>
         Dans l’attente d’une réponse, je reste bien sûr à votre disposition et serai ravi de vous en dire plus, sur cette application et sur ma motivation concernant le poste {{ (letter.jobDStatus == 0) ? 'de ' : 'd\'' }}{{letter.jobName}} au sein {{ (letter.companyDStatus == 0) ? 'de ' : 'd\'' }}{{letter.companyName}} au cours d’un entretien, si mon profil vous intéresse.
     </p>
-    <div class="row d-flex justify-content-between">
+    <div class="d-flex justify-content-between pt-5">
         <p>
             Cordialement,</br>
             Quentin Lemberton</br>
