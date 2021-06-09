@@ -1,5 +1,7 @@
 .canvas--A4 {
-    /* background-image: url("https://i.ibb.co/NN0sXW1/cover-letter-background-01.jpg"); */
+    /* background-image: url("../../images/letter_bg01.jpg"); */
+    background-image: url("/perso/overkill/images/letter_bg01.jpg");
+    background-color: blueviolet;
     background-repeat: no-repeat;
     background-size: cover;
     box-shadow: 5px 5px 10px black;
