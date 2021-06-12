@@ -1,7 +1,8 @@
+{# <div class="canvas--A4" style="background-image:url('{{ asset('../images/letter_bg01.jpg') }}')"> #}
 <div class="canvas--A4" style="background-image:url('{{ asset('../images/letter_bg01.jpg') }}')">
     <div class="d-flex justify-content-between mb-3">
         <p>LEMBERTON QUENTIN</p>
-        <p>le {{letter.createdAt.date | date("d/m/Y")}}</p>
+        {# <p>le {{letter.createdAt.date | date("d/m/Y")}}</p>
     </div>
     <p class="mb-4 text-center">
         Objet : Candidature pour le poste {{ (letter.jobDStatus == 0) ? 'de ' : 'd\'' }}{{letter.jobName}} au sein {{ (letter.companyDStatus == 0) ? 'de ' : 'd\'' }}{{letter.companyName}}     
@@ -32,7 +33,7 @@
     </p>
     <p>
         Dans l’attente d’une réponse, je reste bien sûr à votre disposition et serai ravi de vous en dire plus, sur cette application et sur ma motivation concernant le poste {{ (letter.jobDStatus == 0) ? 'de ' : 'd\'' }}{{letter.jobName}} au sein {{ (letter.companyDStatus == 0) ? 'de ' : 'd\'' }}{{letter.companyName}} au cours d’un entretien, si mon profil vous intéresse.
-    </p>
+    </p> #}
     <div class="d-flex justify-content-between pt-5">
         <p>
             Cordialement,</br>
