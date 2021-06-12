@@ -2,18 +2,17 @@
 
 namespace App\Controller;
 
+use DateTime;
+use Knp\Snappy\Pdf;
 use App\Entity\Letter;
 use App\Form\LetterType;
-use DateTime;
+use App\Service\isDeOrD;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-
-// bundle for pdf generation
-use Dompdf\Dompdf;
-use Dompdf\Options;
 
 class LetterController extends AbstractController
 {
@@ -31,6 +30,13 @@ class LetterController extends AbstractController
 
         // is the form submitted and valid ?
         if($form->isSubmitted() && $form->isValid()){
+
+            // we instanciate our service as it needs an argument letter (so no injection possible)
+            $isDeOrD = new isDeOrD($letter);
+            //we use our service to determine wether we'll use a "de" or a "d' " in front of the company and the job name
+            $isDeOrD->setCompanyDStatus();
+            $isDeOrD->setJobDStatus();
+
             // we give the new new letter object a datetime
             $letter->setCreatedAt(new DateTime());
             // the manager will save the new entity
@@ -49,45 +55,28 @@ class LetterController extends AbstractController
     }
 
     /**
+     *  Will use wkhtmltopdf and snappyBundle to convert the html letter into pdf
+     * 
      * @Route("/letter/download/{id}", name="letter_download")
      */
-    public function letterToPdf(Letter $letter)
+    public function letterToPdf(Letter $letter, Pdf $pdf)
     {
-        // Configure Dompdf according to your needs
-        $pdfOptions = new Options();
-        $pdfOptions->set('defaultFont', 'Arial');
-        $pdfOptions->set('isHtml5ParserEnabled', true);
-        $pdfOptions->set('isRemoteEnabled', true);
-        //utile ?
-        $pdfOptions->set('isJavascriptEnabled', true);
-        $pdfOptions->set('isFontSubsettingEnabled', true);
-        
-        // Instantiate Dompdf with our options
-        $dompdf = new Dompdf($pdfOptions);
-        
-        // Retrieve the HTML generated in our twig file
+        $companyName =  $letter->getCompanyName();
+
         $html = $this->renderView('letter/letter.html.twig', [
             'letter' => $letter,
         ]);
-        //! TEST chargement css 
-        // $html .= '<link type="text/css" href="/perso/overkill/public/css/app.css" rel="stylesheet" />';
-        $html .= '<img src="../../../../images/letter_bg01.jpg">';
 
-        // Load HTML to Dompdf
-        $dompdf->loadHtml($html);
-        
-        // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
-        $dompdf->setPaper('A4', 'portrait');
+        return new PdfResponse($pdf->getOutputFromHtml($html, [
+            'page-size' => 'A4',
+            'encoding' => 'UTF-8',
+            'margin-top' => '0mm',
+            'margin-bottom' => '0mm',
+            'margin-left' => '0mm',
+            'margin-right' => '0mm',
+            'zoom' => '2',
+            'bypass-proxy-for' => false,
+        ]), 'Cover_letter_' . $companyName . '.pdf');
 
-        // Render the HTML as PDF
-        $dompdf->render();
-
-        // Output the generated PDF to Browser (force download)
-        $dompdf->stream("mypdf.pdf", [
-            "Attachment" => false
-        ]);
-
-        // dd($dompdf);
-        die;
     }
 }

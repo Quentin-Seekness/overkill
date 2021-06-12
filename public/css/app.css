@@ -1,12 +1,18 @@
 .canvas--A4 {
-    /* background-image: url("../../images/letter_bg01.jpg"); */
     background-image: url("/perso/overkill/images/letter_bg01.jpg");
     background-color: blueviolet;
     background-repeat: no-repeat;
     background-size: cover;
     box-shadow: 5px 5px 10px black;
-    height: 1123px;
-    width: 794px;
+    /* height: 1123px;
+    width: 794px; */
+    height: 1684px;
+    width: 1191px;
+    font-size: 1.35em;
     margin: auto;
-    padding: 50px;
+    padding: 90px;
+}
+
+.main--text p {
+    margin-top: 1.25em;
 }

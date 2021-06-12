@@ -2,25 +2,26 @@
 
 {% block title %}OVERKILL - Your letter{% endblock %}
 
+{% block css %}<link rel="stylesheet" href="{{ absolute_url(asset('css/app.css')) }}">{% endblock %}
+
 {% block body %}
 <div class="canvas--A4">
-{# <div class="canvas--A4" style="background-image:url('{{ asset('../images/letter_bg01.jpg') }}')"> #}
 
-    <div class="d-flex justify-content-between mb-3 font-italic">
+    <div class="d-flex justify-content-between mb-5 font-italic">
         <p>LEMBERTON QUENTIN</p>
         <p>le {{letter.createdAt.date | date("d/m/Y")}}</p>
     </div>
-    <p class="mb-4 text-center font-weight-bold">
+    <p class="mb-5 text-center font-weight-bold">
         Objet : Candidature pour le poste {{ (letter.jobDStatus == 0) ? 'de ' : 'd\'' }}{{letter.jobName}} au sein {{ (letter.companyDStatus == 0) ? 'de ' : 'd\'' }}{{letter.companyName}}     
     </p>
-    <p>
+    <p class="pt-5 pb-4">
         {% if letter.hrGender == 0 %}Madame, Monsieur {% endif %}
         {% if letter.hrGender == 1 %}Monsieur {% endif %}
         {% if letter.hrGender == 2 %}Madame {% endif %}
 
         {% if letter.hrName != null %}{{letter.hrName}}{% endif %}
     </p>
-    <div class="text-justify">
+    <div class="main--text text-justify">
         <p>
             Suite à ma reconversion professionnelle en tant que développeur web full stack, je suis actuellement en pleine recherche d’emploi. Le poste {{ (letter.jobDStatus == 0) ? 'de ' : 'd\'' }}{{letter.jobName}} m'intéresse grandement, c’est pourquoi je me permets de proposer ma candidature.
         </p>
