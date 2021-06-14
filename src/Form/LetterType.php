@@ -17,23 +17,9 @@ class LetterType extends AbstractType
             ->add('jobName', TextType::class, [
                 'label' => 'Intitulé du poste'
             ])
-            // ->add('jobDStatus', ChoiceType::class, [
-            //     'label' => 'L\'intitulé du poste doit s\'écrire avec :',
-            //     'choices' => [
-            //         'un " de "' => 0,
-            //         'un " d\' "' => 1,
-            //     ]
-            // ])
             ->add('companyName', TextType::class, [
                 'label' => 'Nom de l\'entreprise'
             ])
-            // ->add('companyDStatus', ChoiceType::class, [
-            //     'label' => 'Le nom de l\'entreprise doit s\'écrire avec :',
-            //     'choices' => [
-            //         'un " de "' => 0,
-            //         'un " d\' "' => 1,
-            //     ]
-            // ])
             ->add('hrName', TextType::class, [
                 'label' => 'Nom du recruteur (si communiqué)'
             ])
@@ -43,7 +29,10 @@ class LetterType extends AbstractType
                     'Non communiqué' => 0,
                     'Homme' => 1,
                     'Femme' => 2,
-                ]
+                ],
+                'expanded' => true,
+                'multiple' => false,
+                'data' => 0
             ])
         ;
     }

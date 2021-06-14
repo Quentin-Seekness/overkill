@@ -6,6 +6,7 @@ use DateTime;
 use Knp\Snappy\Pdf;
 use App\Entity\Letter;
 use App\Form\LetterType;
+use App\Repository\LetterRepository;
 use App\Service\isDeOrD;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,7 +18,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class LetterController extends AbstractController
 {
     /**
-     * @Route("/letter/add", name="letter_add", methods={"GET", "POST"})
+     * @Route("/", name="letter_add", methods={"GET", "POST"})
      */
     public function create(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -43,14 +44,37 @@ class LetterController extends AbstractController
             $entityManager->persist($letter);
             $entityManager->flush();
 
-            return $this->render('letter/read.html.twig', [
-                'letter' => $letter,
+            return $this->redirectToRoute('letter_read', [
+                'id' => $letter->getId(),
             ]);
         }
 
         // as long as the form is not submitted or valid we display the create view
         return $this->render('letter/create.html.twig', [
             'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/letter/browse", name="letter_browse", methods={"GET"})
+     */
+    public function browse(LetterRepository $letterRepository): Response
+    {
+        $letters = $letterRepository->findAll();
+
+        return $this->render('letter/browse.html.twig', [
+            'letters' => $letters,
+        ]);
+    }
+
+    /**
+     * @Route("/letter/{id}", name="letter_read", methods={"GET"})
+     */
+    public function read(Letter $letter): Response
+    {
+
+        return $this->render('letter/read.html.twig', [
+            'letter' => $letter,
         ]);
     }
 
@@ -78,5 +102,25 @@ class LetterController extends AbstractController
             'bypass-proxy-for' => false,
         ]), 'Cover_letter_' . $companyName . '.pdf');
 
+    }
+
+    /**
+     * @Route("/letter/delete/{id}", name="letter_delete", methods={"DELETE"})
+     */
+    public function delete(Letter $letter, Request $request, EntityManagerInterface $entityManager): Response
+    {
+        // we recover the token from the form
+        $submittedToken = $request->request->get('token');
+
+        // 'delete-challenge' is the same value used in the template to generate the token
+        if (! $this->isCsrfTokenValid('delete-letter', $submittedToken)) {
+            // We send an error an 403
+            throw $this->createAccessDeniedException('Are you token to me !??!??');
+        }
+
+        $entityManager->remove($letter);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('letter_browse');
     }
 }
