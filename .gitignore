@@ -7,7 +7,6 @@
 /public/bundles/
 /var/
 /vendor/
-/templates/letter/letter.html.twig
 ###< symfony/framework-bundle ###
 
 ###> symfony/phpunit-bridge ###
@@ -21,4 +20,4 @@
 ###< phpunit/phpunit ###
 
 # letter.html.twig (sensible data)
-letter.html.twig
+templates/letter/letter.html.twig
