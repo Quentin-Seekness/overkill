@@ -21,4 +21,4 @@
 ###< phpunit/phpunit ###
 
 # letter.html.twig (sensible data)
-/templates/letter/letter.html.twig
+letter.html.twig
