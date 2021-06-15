@@ -105,7 +105,7 @@ class LetterController extends AbstractController
     }
 
     /**
-     * @Route("/letter/delete/{id}", name="letter_delete", methods={"DELETE"})
+     * @Route("/letter/delete/{id}", name="letter_delete", methods={"DELETE", "POST"})
      */
     public function delete(Letter $letter, Request $request, EntityManagerInterface $entityManager): Response
     {

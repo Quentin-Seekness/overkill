@@ -16,6 +16,8 @@
 </div>
 
 {# the letter as we want it to be downloaded (whitout header footer etc..) #}
-{{ include('letter/letter.html.twig') }}
+<div class="letter--mini">
+    {{ include('letter/letter.html.twig') }}
+</div>
 
 {% endblock %}

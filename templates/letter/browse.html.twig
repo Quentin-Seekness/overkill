@@ -20,8 +20,8 @@
                             {# CSRF Token #}
                             <input type="hidden" name="token" value="{{ csrf_token('delete-letter') }}"/>
                             {# Delete button and confirmation #}
-                            <button type="submit">
-                                <img class="icon--delete" src="{{ asset('../images/delete_icon.svg') }}" alt="">
+                            <button type="submit" class="delete--button">
+                                <img class="icon--delete" src="{{ asset('../images/delete_cross2.svg') }}" alt="">
                             </button>
                         </form>
                     </div>
