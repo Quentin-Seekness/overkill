@@ -1,0 +1,13 @@
+<div class="container">
+    <div class="form--background">
+        {% form_theme form 'bootstrap_4_layout.html.twig' %}
+        
+        {{ form_start(form, {attr: {novalidate: 'novalidate'}}) }}
+
+                {{ form_widget(form) }}
+                <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-success form--submit">Générer</button>
+                </div>
+        {{ form_end(form) }}
+    </div>
+</div>

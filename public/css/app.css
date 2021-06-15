@@ -1,0 +1,98 @@
+body {
+    background-image: linear-gradient(to top, #a0a0a0, 50%, #ff0000ad); 
+    height: 100%;
+    min-height: 100vh;
+}
+
+.canvas--A4 {
+    background-image: url("/perso/overkill/images/letter_bg01.jpg");
+    background-color: blueviolet;
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: 5px 5px 10px black;
+    height: 1684px;
+    width: 1191px;
+    font-size: 1.35em;
+    margin: auto;
+    padding: 90px;
+}
+
+.letter--mini {
+    zoom: 60%;
+}
+
+.main--text p {
+    margin-top: 1.25em;
+}
+
+
+.logo--overkill {
+    width: 12em;
+    margin: 0em 3em;
+}
+
+.nav--item {
+    color: rgba(0, 0, 0, 0.445);
+    text-decoration: none;
+}
+
+.nav--item:hover {
+    color: rgb(165, 59, 59);
+    text-decoration: none;
+}
+
+.nav--item--active {
+    color: rgb(165, 59, 59);
+    text-decoration: none;
+}
+
+.nav--container {
+    width: auto;
+    height: 8em;
+    margin-bottom: 8em;
+    background-color: white;
+    box-shadow: 0px 1px 15px black;
+    display: flex;
+    justify-content: center;
+}
+
+.form--background {
+    background-color: #4a07075c;
+    box-shadow: 10px 10px 20px -15px black;
+    padding: 2em;
+    margin: auto;
+    margin-bottom: 10em;
+    border-radius: 1em;
+    width: 50%;
+}
+
+.form--submit {
+    margin-top: 2em;
+    background-color: #be1e2d;
+    box-shadow: 3px 3px 0px 2px #991320;
+    border-color: transparent;
+}
+
+.form--submit:hover {
+    background-color: #991320;
+    border-color: transparent;
+}
+
+.card--background {
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+.banner--info {
+    background-color:#9913206e;
+    padding: 2em;
+}
+
+.icon--delete {
+    width: 2em;
+}
+
+.delete--button {
+    border: none;
+    background-color: transparent;
+}

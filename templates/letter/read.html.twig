@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}OVERKILL - Your letter{% endblock %}
+
+{% block body %}
+
+<div class="text-center mb-5 text-light banner--info">
+    <h3 class="fw-bold">Le fichier est prêt !</h3>
+    <h4 class="fst-italic">Clique sur le bouton pour le télécharger</h4>
+</div>
+{# call the road that download the letter in pdf #}
+<div class="text-center mb-5">
+    <a href="{{ path('letter_download', {id: letter.id}) }}" target="_blank">
+        <button type="button" class="btn btn-success form--submit mb-5">Télécharger</button>
+    </a>
+</div>
+
+{# the letter as we want it to be downloaded (whitout header footer etc..) #}
+<div class="letter--mini">
+    {{ include('letter/letter.html.twig') }}
+</div>
+
+{% endblock %}

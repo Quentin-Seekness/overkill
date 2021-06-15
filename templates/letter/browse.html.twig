@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}OVERKILL - Archives{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <h4 class="text-center mb-4">Tes lettres déjà créées</h4>
+    
+    <div class="d-flex flex-wrap justify-content-center">
+        {% for letter in letters %}
+        
+        <div class="col-3 card border-secondary mb-3 card--background" style="max-width: 20rem;">
+            <a class="text-decoration-none" href="{{ path('letter_read', {id: letter.id}) }}">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <div>{{letter.companyName}}</div>
+                        <form action="{{ path('letter_delete', {id: letter.id}) }}" method="POST">
+                            {# Fake HTTP Method #}
+                            <input type="hidden" name="_method" value="DELETE"/>
+                            {# CSRF Token #}
+                            <input type="hidden" name="token" value="{{ csrf_token('delete-letter') }}"/>
+                            {# Delete button and confirmation #}
+                            <button type="submit" class="delete--button">
+                                <img class="icon--delete" src="{{ asset('../images/delete_cross2.svg') }}" alt="">
+                            </button>
+                        </form>
+                    </div>
+                
+                <div class="card-body">
+                <h4 class="card-title">{{letter.jobName}}</h4>
+                <p class="card-text">le {{letter.createdAt.date | date("d/m/Y")}}</p>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

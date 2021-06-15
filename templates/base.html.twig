@@ -1,19 +1,44 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8">
+        {% block meta %}<meta charset="UTF-8">{% endblock %}
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {# Run `composer require symfony/webpack-encore-bundle`
-           and uncomment the following Encore helpers to start using Symfony UX #}
-        {% block stylesheets %}
-            {#{{ encore_entry_link_tags('app') }}#}
-        {% endblock %}
-
-        {% block javascripts %}
-            {#{{ encore_entry_script_tags('app') }}#}
-        {% endblock %}
+        {# favicon #}
+        <link rel="shortcut icon" href="{{ asset('../images/overkill_logo_v4.svg') }}">
+        {# Bootstrap 4.6 CSS #}
+        {% block bootstrap %}<link rel="stylesheet" href="{{ asset('css/bootswatch/bootstrap.min.css') }}">{% endblock %}
+        {# Notre CSS #}
+        {% block css %}<link rel="stylesheet" href="{{ asset('css/app.css') }}">{% endblock %}
     </head>
     <body>
+        {% block nav %}
+        {% set route_name = app.request.attributes.get('_route') %}
+            <nav class="nav--container">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item mb-4">
+                        <a class="nav--item{% if route_name == "letter_add" %}{{'--active'}}{% endif %}" data-bs-toggle="tab" href="{{ path('letter_add') }}">Nouvelle lettre</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('letter_add') }}">
+                            <img class="logo--overkill" src="{{ asset('../images/overkill_logo_v4.svg') }}" alt="overkill_logo">
+                        </a>
+                    </li>
+                    <li class="nav-item mb-4">
+                        <a class="nav--item{% if route_name == "letter_browse" %}{{'--active'}}{% endif %}" data-bs-toggle="tab" href="{{ path('letter_browse') }}">Mes lettres</a>
+                    </li>
+                </ul>
+            </nav>
+        {% endblock %}
+
         {% block body %}{% endblock %}
+
+        {% block footer %}
+            <div class="container">
+                <p class="mt-5">Made with <span>&#127911;</span> by Seekness</p>
+            </div>
+        {% endblock %}
+        {# Bootstrap 4.6 JS #}
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
     </body>
 </html>
