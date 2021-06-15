@@ -1,4 +1,4 @@
-<img src="images/overkill_logo_v2.svg" alt="logo" style="width:200px;"/>
+<img src="images/overkill_logo_small.svg" alt="logo"/>
 
 # Overkill
 ## _A smart cover letter generator_
@@ -17,7 +17,7 @@ That letter is then available in a downloadable pdf document ready to be sent.
 
 ## Tech
 
-- [Symfony](https://symfony.com/) 
+- [Symfony](https://symfony.com/) - PHP framework
 - [Doctrine](https://www.doctrine-project.org/) - Database
 - [Twig](https://twig.symfony.com/doc/3.x/) - Html integration
 - [Bootstrap4.6](https://getbootstrap.com/)
