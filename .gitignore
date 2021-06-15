@@ -20,4 +20,4 @@
 ###< phpunit/phpunit ###
 
 # letter.html.twig (sensible data)
-overkill/templates/letter/letter.html.twig
+/templates/letter/letter.html.twig
